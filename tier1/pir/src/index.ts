@@ -1,7 +1,12 @@
 import * as SerialPort from 'serialport'
 import * as dotenv from 'dotenv'
 
-import { sequelize } from './services/sequelize'
+import { models, sequelize } from './services/sequelize'
+
+import { Log } from './typescript/log'
+import { Model } from 'sequelize/dist'
+import audioLoader from 'audio-loader'
+import audioPlay from 'audio-play'
 
 dotenv.config()
 
@@ -19,10 +24,14 @@ const setup = async () => {
     .then(() => console.log('Database sync ok'))
     .catch(console.log)
 
-  const port = new SerialPort(comPath, { baudRate: parseInt(baudRate) })
+  const port = new SerialPort.default(comPath, { baudRate: parseInt(baudRate) })
 
-  port.addListener('data', (chunk: Buffer) => {
+  port.addListener('data', async (chunk: Buffer) => {
     console.log(chunk.toString('utf-8'))
+
+    await audioLoader('./enemy-detected.mp3').then(audioPlay)
+
+    await models.Log.create<Model<Log>>({ tag: 'pir sensor' })
   })
 
   console.log(`Listening to ${comPath}, baud rate ${baudRate}`)

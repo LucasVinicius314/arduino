@@ -5,10 +5,11 @@
   "author": "Lucas Coelho <58010418+LucasVinicius314@users.noreply.github.com>",
   "license": "MIT",
   "dependencies": {
+    "audio-loader": "^1.0.3",
+    "audio-play": "^2.3.1",
     "dotenv": "^10.0.0",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
-    "play-sound": "^1.1.4",
     "sequelize": "^6.12.0-alpha.1",
     "serialport": "^9.2.8",
     "typescript": "^4.5.2"
@@ -22,6 +23,7 @@
     "postinstall": "yarn run build"
   },
   "devDependencies": {
+    "@types/audio-play": "^2.3.0",
     "@types/serialport": "^8.0.2"
   }
 }

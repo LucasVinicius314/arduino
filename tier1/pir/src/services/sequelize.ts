@@ -13,6 +13,4 @@ const Log = sequelize.define('log', {
   tag: DataTypes.STRING,
 })
 
-export const Models = {
-  User: Log,
-}
+export const models = { Log }

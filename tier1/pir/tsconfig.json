@@ -5,6 +5,7 @@
     "moduleResolution": "Node",
     "outDir": "build",
     "rootDir": "src",
-    "sourceMap": true
+    "sourceMap": true,
+    "esModuleInterop": true
   }
 }
